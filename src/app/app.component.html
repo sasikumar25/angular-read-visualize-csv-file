@@ -1,0 +1,22 @@
+<div class="container">
+  <h4>Import CSV File to Visualize it's contents</h4>
+  <input type="file" class="mt-2" #csvReader name="Upload CSV" id="csvFileUpload" (change)="csvFileUploadListener($event)" accept=".csv" />    
+<table class="table mt-3" *ngIf="records.length > 0">    
+  <thead>    
+    <tr>    
+      <th *ngFor="let header of csvHeaders">{{header | titlecase}}</th>    
+    </tr>    
+  </thead>    
+  <tbody>    
+    <tr *ngFor="let record of records | orderby: 'issueCount'">    
+      <td> <span>{{record.firstName}}</span> </td>    
+      <td> <span>{{record.surName}}</span> </td>    
+      <td> <span>{{record.issueCount}}</span> </td>    
+      <td> <span>{{record.dateOfBirth | date }}</span> </td>    
+    </tr>
+    <tr *ngIf="!records.length">    
+      No records to display  
+    </tr>
+  </tbody>    
+</table>
+</div>
